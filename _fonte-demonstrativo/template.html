@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demonstrativo do Projeto | Piero Barbacovi Advogados</title>
+<link rel="icon" href="{{FAVICON}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   DEMONSTRATIVO — Piero Barbacovi Advogados
+   Arquivo autocontido: todas as imagens estao embutidas em base64, portanto
+   ele funciona sozinho, sem a pasta assets e sem conexao.
+   01. Tokens e base   02. Capa        03. Marquises   04. Dispositivos
+   05. Identidade      06. Arquitetura 07. Rodape e impressao
+   ========================================================================== */
+
+/* ============================ 01. TOKENS ================================= */
+:root{
+  --verde:#353f36;
+  --verde-esc:#232b24;
+  --verde-prof:#1a201b;
+  --dourado:#c9b292;
+  --dourado-claro:#e0cdb2;
+  --dourado-forte:#a8873f;
+  --areia-clara:#ded1be;
+  --papel:#f2ece2;
+  --branco:#fcfbfb;
+  --cinza:#4c554d;
+  --serif:'Cormorant Garamond',Garamond,'Times New Roman',serif;
+  --sans:'Jost','Segoe UI',-apple-system,Helvetica,Arial,sans-serif;
+  --corte:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px));
+  --corte-p:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--verde-prof);
+  color:var(--areia-clara);
+  font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1240px,92vw);margin-inline:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.06;letter-spacing:.004em}
+h1{font-size:clamp(2.3rem,7.4vw,5.4rem)}
+h2{font-size:clamp(1.72rem,5vw,3.3rem)}
+p{overflow-wrap:break-word}
+
+.eyebrow{
+  display:inline-block;font-size:.62rem;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--dourado);
+  background:rgba(201,178,146,.13);padding:9px 15px 8px;margin-bottom:20px;
+  clip-path:var(--corte-p);
+}
+.sec{padding:clamp(56px,9vw,130px) 0;position:relative}
+.sec-claro{background:var(--papel);color:var(--verde-prof)}
+.sec-claro .eyebrow{color:var(--verde-esc);background:rgba(35,43,36,.09)}
+.sec-claro p{color:var(--cinza)}
+.sec-verde{background:var(--verde)}
+.lead{font-size:clamp(.96rem,2.6vw,1.16rem);max-width:64ch;color:rgba(222,209,190,.78)}
+.sec-claro .lead{color:var(--cinza)}
+.cab{max-width:840px;margin-bottom:clamp(34px,5vw,64px)}
+.cab h2{margin-bottom:18px}
+.cab-centro{max-width:780px;margin-inline:auto;text-align:center}
+.cab-centro .lead{margin-inline:auto}
+
+/* ============================== 02. CAPA ================================ */
+.capa{
+  position:relative;min-height:min(100vh,880px);display:flex;align-items:center;
+  padding:clamp(88px,14vw,110px) 0 clamp(56px,9vw,90px);overflow:hidden;
+  background:radial-gradient(120% 90% at 78% 12%,#3c4740 0%,#232b24 46%,#151a16 100%);
+}
+.capa::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(201,178,146,.10) 1px,transparent 1px) 0 0/94px 100%,
+    linear-gradient(0deg,rgba(201,178,146,.06) 1px,transparent 1px) 0 0/100% 94px;
+  -webkit-mask-image:radial-gradient(80% 70% at 50% 40%,#000 0%,transparent 78%);
+  mask-image:radial-gradient(80% 70% at 50% 40%,#000 0%,transparent 78%);
+}
+.capa-fig{
+  position:absolute;right:-4%;top:0;bottom:0;width:min(56%,860px);
+  background-image:url("{{CAPA_FUNDO}}");
+  background-position:center right;background-size:cover;background-repeat:no-repeat;
+  opacity:.30;filter:grayscale(.4) contrast(1.05);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 42%,#000 100%);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 42%,#000 100%);
+}
+.capa .wrap{position:relative;z-index:2}
+.capa-marca{display:flex;align-items:center;gap:clamp(12px,3vw,18px);margin-bottom:clamp(28px,5vw,44px);flex-wrap:wrap}
+.capa-marca img{height:clamp(38px,9vw,52px);width:auto}
+.capa-marca span{
+  font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(222,209,190,.5);border-left:1px solid rgba(201,178,146,.35);padding-left:16px;
+}
+.capa h1{color:var(--branco);max-width:16ch}
+.capa h1 em{font-style:italic;color:var(--dourado)}
+.capa .lead{margin-top:22px}
+.capa-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:clamp(26px,5vw,40px)}
+.chip{
+  font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+  padding:9px 15px;border:1px solid rgba(201,178,146,.3);color:var(--dourado-claro);
+  clip-path:var(--corte-p);
+}
+.chip-solido{background:var(--dourado);color:var(--verde-prof);border-color:var(--dourado);font-weight:600}
+
+/* =========================== 03. MARQUISES ============================== */
+.tarja{
+  background:var(--dourado);color:var(--verde-prof);
+  padding:15px 0;overflow:hidden;white-space:nowrap;
+  border-block:1px solid rgba(26,32,27,.16);
+}
+.tarja-esc{background:var(--verde-esc);color:var(--dourado);border-color:rgba(201,178,146,.18)}
+.trilho{display:inline-flex;align-items:center;animation:desliza 42s linear infinite}
+.trilho-inv{animation-direction:reverse}
+.trilho span{
+  font-size:.7rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  padding:0 22px;display:inline-flex;align-items:center;gap:22px;
+}
+.trilho span::after{content:"\25C6";font-size:.5rem;opacity:.55}
+@keyframes desliza{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.faixa-img{background:var(--verde-prof);padding:22px 0;overflow:hidden}
+.trilho-img{display:flex;gap:16px;width:max-content;animation:desliza 68s linear infinite}
+.trilho-img figure{
+  width:clamp(190px,42vw,340px);aspect-ratio:4/3;overflow:hidden;
+  clip-path:var(--corte);position:relative;flex:0 0 auto;
+}
+.trilho-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.22) contrast(1.04)}
+.trilho-img figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:26px 14px 11px;
+  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dourado-claro);
+  background:linear-gradient(transparent,rgba(21,26,22,.88));
+}
+.faixa-img:hover .trilho-img,.tarja:hover .trilho{animation-play-state:paused}
+
+/* ============================= NUMEROS ================================== */
+.numeros{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));
+  gap:1px;background:rgba(201,178,146,.22);border:1px solid rgba(201,178,146,.22);
+}
+.numeros>div{background:var(--verde);padding:clamp(24px,4vw,34px) clamp(20px,3vw,28px)}
+.numeros dt{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dourado);margin-bottom:10px}
+.numeros dd{font-family:var(--serif);font-size:clamp(2.2rem,7vw,3.2rem);line-height:1;color:var(--branco)}
+.numeros dd small{font-family:var(--sans);font-size:.66rem;letter-spacing:.12em;display:block;margin-top:8px;color:rgba(222,209,190,.6)}
+
+/* ========================= 04. DISPOSITIVOS ============================= */
+.palco{
+  position:relative;overflow:hidden;
+  padding:clamp(52px,7vw,110px) 0 clamp(58px,8vw,120px);
+  background:
+    radial-gradient(90% 70% at 50% 0%,rgba(201,178,146,.10),transparent 62%),
+    linear-gradient(180deg,#20271f 0%,#151a16 100%);
+}
+.palco-piso{
+  position:absolute;left:0;right:0;bottom:0;height:38%;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.5));pointer-events:none;
+}
+.palco .wrap{position:relative;z-index:2}
+.device-linha{display:flex;flex-wrap:wrap;gap:clamp(30px,4vw,58px);align-items:flex-end;justify-content:center}
+
+/* a tela e uma janela; a captura inteira da pagina rola por dentro dela */
+.tela{
+  position:relative;width:100%;overflow:hidden;
+  background:var(--areia-clara);border-radius:4px;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.5);
+}
+.rolo{
+  position:absolute;top:0;left:0;width:100%;
+  animation:rolar var(--dur,80s) ease-in-out infinite alternate;
+  animation-play-state:paused;
+}
+.tela.ativa .rolo{animation-play-state:running}
+.tela:hover .rolo,.tela.pausada .rolo{animation-play-state:paused}
+@keyframes rolar{
+  0%,4%{transform:translateY(0)}
+  96%,100%{transform:translateY(var(--percurso,0px))}
+}
+
+/* notebook */
+.laptop{width:min(1020px,100%);margin-inline:auto;filter:drop-shadow(0 46px 70px rgba(0,0,0,.62))}
+.laptop-tampa{
+  background:linear-gradient(160deg,#2e332e,#141814);
+  border:1px solid rgba(201,178,146,.22);
+  border-radius:clamp(9px,1.6vw,16px) clamp(9px,1.6vw,16px) 6px 6px;
+  padding:clamp(8px,1.6vw,16px) clamp(8px,1.6vw,16px) clamp(12px,2.2vw,22px);
+  position:relative;
+}
+.laptop-tampa::before{
+  content:"";position:absolute;top:5px;left:50%;transform:translateX(-50%);
+  width:5px;height:5px;border-radius:50%;background:#0d100d;
+  box-shadow:inset 0 0 0 1px rgba(201,178,146,.3);
+}
+.laptop .tela{aspect-ratio:1440/900}
+.laptop-base{
+  height:clamp(9px,1.5vw,15px);background:linear-gradient(180deg,#3a413a,#1b1f1b);
+  border-radius:0 0 12px 12px;position:relative;box-shadow:0 10px 24px rgba(0,0,0,.45);
+}
+.laptop-base::after{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:clamp(70px,12vw,120px);height:5px;background:#12150f;border-radius:0 0 8px 8px;
+}
+.laptop-pe{width:78%;height:8px;margin:0 auto;background:linear-gradient(180deg,#252b25,transparent);border-radius:0 0 40px 40px}
+
+/* telefone */
+.fone{width:clamp(216px,62vw,312px);flex:0 0 auto;filter:drop-shadow(0 36px 52px rgba(0,0,0,.6))}
+.fone-corpo{
+  background:linear-gradient(160deg,#333a33,#121612);
+  border:1px solid rgba(201,178,146,.24);
+  border-radius:clamp(30px,7vw,44px);padding:clamp(8px,2vw,11px);position:relative;
+}
+.fone .tela{aspect-ratio:390/844;border-radius:clamp(22px,5.4vw,34px)}
+.ilha{
+  position:absolute;top:clamp(15px,3.8vw,20px);left:50%;transform:translateX(-50%);
+  width:clamp(62px,17vw,84px);height:clamp(16px,4.4vw,21px);
+  background:#080a08;border-radius:14px;z-index:4;
+}
+.botao-lat{position:absolute;right:-2px;width:3px;background:#39413a;border-radius:0 3px 3px 0}
+.botao-lat.b1{top:22%;height:11%}
+.botao-lat.b2{top:36%;height:11%}
+
+/* tablet */
+.tablet{width:clamp(250px,72vw,460px);flex:0 0 auto;filter:drop-shadow(0 36px 56px rgba(0,0,0,.58))}
+.tablet-corpo{
+  background:linear-gradient(160deg,#333a33,#121612);
+  border:1px solid rgba(201,178,146,.22);
+  border-radius:clamp(16px,4vw,26px);padding:clamp(9px,2.4vw,15px);position:relative;
+}
+.tablet .tela{aspect-ratio:820/1120;border-radius:clamp(9px,2vw,14px)}
+.tablet-corpo::before{
+  content:"";position:absolute;top:5px;left:50%;transform:translateX(-50%);
+  width:5px;height:5px;border-radius:50%;background:#0b0d0b;
+}
+
+.legenda-device{
+  text-align:center;margin-top:18px;
+  font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(222,209,190,.55);
+}
+.legenda-device b{color:var(--dourado);font-weight:600}
+.dica{
+  text-align:center;margin-top:clamp(20px,3vw,28px);
+  font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(222,209,190,.4);
+}
+
+/* =========================== 05. IDENTIDADE ============================= */
+.grade-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(22px,4vw,52px)}
+.paleta{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(105px,45%),1fr));gap:12px}
+.cor{clip-path:var(--corte);padding:clamp(52px,12vw,78px) 13px 13px;border:1px solid rgba(26,32,27,.12)}
+.cor b{display:block;font-size:.68rem;letter-spacing:.1em;font-weight:600;text-transform:uppercase}
+.cor span{display:block;font-size:.62rem;letter-spacing:.08em;opacity:.72}
+.tipo{border:1px solid rgba(26,32,27,.14);padding:clamp(20px,4vw,30px);clip-path:var(--corte);background:#fff}
+.tipo+.tipo{margin-top:16px}
+.tipo .rotulo{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--dourado-forte);margin-bottom:12px}
+.amostra-serif{font-family:var(--serif);font-size:clamp(1.5rem,5.4vw,2.8rem);line-height:1.06;color:var(--verde-prof)}
+.amostra-sans{font-family:var(--sans);font-size:clamp(.92rem,2.6vw,1rem);color:var(--cinza)}
+.glifos{font-family:var(--serif);font-size:clamp(.88rem,2.8vw,1.05rem);letter-spacing:.05em;color:var(--verde-esc);margin-top:12px;overflow-wrap:anywhere}
+.mostruario{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.selo-card{clip-path:var(--corte);background:#1a201b;color:#c9b292;padding:13px 20px;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase}
+
+/* ========================== 06. ARQUITETURA ============================= */
+.mapa{border-top:1px solid rgba(201,178,146,.24)}
+.mapa li{
+  list-style:none;display:grid;grid-template-columns:62px minmax(150px,1fr) 2.1fr;
+  gap:clamp(10px,3vw,40px);align-items:baseline;
+  padding:clamp(18px,3vw,24px) 0;border-bottom:1px solid rgba(201,178,146,.18);
+}
+.mapa .num{font-family:var(--serif);font-size:clamp(1.15rem,4vw,1.5rem);color:var(--dourado-forte)}
+.mapa h3{font-family:var(--serif);font-size:clamp(1.2rem,4.4vw,1.5rem);color:var(--branco)}
+.mapa p{font-size:clamp(.88rem,2.5vw,.94rem);color:rgba(222,209,190,.72)}
+
+/* ========================= 07. RODAPE E IMPRESSAO ======================= */
+.btn{
+  display:inline-flex;align-items:center;gap:12px;font-family:var(--sans);
+  font-weight:600;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:17px 30px;border:1px solid transparent;clip-path:var(--corte-p);
+  cursor:pointer;transition:.35s;
+}
+.btn-ouro{background:var(--dourado);color:var(--verde-prof);border-color:var(--dourado)}
+.btn-ouro:hover{background:transparent;color:var(--dourado-claro)}
+footer{
+  padding:32px 0;background:#101410;border-top:1px solid rgba(201,178,146,.14);
+  font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(222,209,190,.42);
+}
+footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .mapa li{grid-template-columns:38px 1fr}
+  .mapa li p{grid-column:2/-1;margin-top:4px}
+}
+@media (max-width:620px){
+  .capa-fig{opacity:.15;width:100%;right:0;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 92%);
+    mask-image:linear-gradient(180deg,#000 0%,transparent 92%)}
+  .capa-marca span{border-left:0;padding-left:0;flex-basis:100%}
+  .device-linha{gap:38px}
+  .fone.extra{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .trilho,.trilho-img,.rolo{animation:none}
+}
+@media print{
+  body{background:#fff;color:#1a201b}
+  .dica{display:none}
+  .capa,.sec,.palco{page-break-inside:avoid}
+  .trilho,.trilho-img,.rolo{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================================ CAPA ================================ -->
+<section class="capa">
+  <div class="capa-fig" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="capa-marca">
+      <img src="{{LOGO}}" alt="Piero Barbacovi Advogados">
+      <span>Demonstrativo do projeto</span>
+    </div>
+    <h1>Uma defesa que <em>responde</em> antes do relógio.</h1>
+    <p class="lead">
+      Landing page institucional e de captação para advocacia criminal, construída em torno de uma
+      única ideia: quem chega ao site está com pressa, com medo e precisa falar com alguém agora.
+      Cada seção existe para encurtar o caminho entre o desespero e o primeiro contato.
+    </p>
+    <div class="capa-meta">
+      <span class="chip chip-solido">Piero Barbacovi Advogados</span>
+      <span class="chip">Fortaleza · Aldeota</span>
+      <span class="chip">Direito criminal e direito à saúde</span>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== TARJA 1 ============================== -->
+<div class="tarja" aria-hidden="true">
+  <div class="trilho">
+    <span>Prisão em flagrante</span><span>Habeas corpus</span><span>Tribunal do júri</span><span>Audiência de custódia</span><span>Execução penal</span><span>Recursos criminais</span><span>Penal econômico</span><span>Plantão 24h</span>
+    <span>Prisão em flagrante</span><span>Habeas corpus</span><span>Tribunal do júri</span><span>Audiência de custódia</span><span>Execução penal</span><span>Recursos criminais</span><span>Penal econômico</span><span>Plantão 24h</span>
+  </div>
+</div>
+
+<!-- ============================== O PROJETO ============================= -->
+<section class="sec sec-verde">
+  <div class="wrap">
+    <div class="cab">
+      <span class="eyebrow">O que foi entregue</span>
+      <h2>Um site de página única, tratado como peça editorial.</h2>
+      <p class="lead">
+        Dez blocos encadeados como um argumento: urgência, competência, prova, história, lugar e
+        resposta. Do primeiro olhar ao WhatsApp aberto, sem desvio e sem ruído.
+      </p>
+    </div>
+    <dl class="numeros">
+      <div><dt>Seções</dt><dd>10</dd></div>
+      <div><dt>Áreas de atuação</dt><dd>10<small>Cards navegáveis</small></dd></div>
+      <div><dt>Imagens tratadas</dt><dd>28<small>Fotografia e arte própria</small></dd></div>
+      <div><dt>Plantão</dt><dd>24h<small>WhatsApp e telefone</small></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ========================= PALCO 1 — NOTEBOOK ========================= -->
+<section class="palco">
+  <div class="palco-piso" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="cab cab-centro">
+      <span class="eyebrow">Visão desktop · 1440 × 900</span>
+      <h2 style="color:var(--branco)">A página inteira, do topo ao rodapé.</h2>
+    </div>
+
+    <div class="laptop">
+      <div class="laptop-tampa">
+        <div class="tela" data-vel="150">
+          <div class="rolo"><img src="{{TELA_DESKTOP}}" alt="Site completo na versão para computador"></div>
+        </div>
+      </div>
+      <div class="laptop-base"></div>
+      <div class="laptop-pe"></div>
+    </div>
+
+    <p class="dica">A rolagem começa ao chegar aqui — toque ou passe o mouse para pausar</p>
+  </div>
+</section>
+
+<!-- ========================= CARROSSEL DE IMAGENS ======================= -->
+<div class="faixa-img" aria-label="Galeria do projeto">
+  <div class="trilho-img">
+    {{GALERIA}}
+  </div>
+</div>
+
+<!-- ====================== PALCO 2 — MOBILE E TABLET ===================== -->
+<section class="palco">
+  <div class="palco-piso" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="cab cab-centro">
+      <span class="eyebrow">Responsivo de verdade</span>
+      <h2 style="color:var(--branco)">A mesma peça, recomposta para a mão.</h2>
+      <p class="lead">
+        No celular a abertura troca de arte: a mesma fotografia, recomposta na vertical, com o
+        espaço de cima reservado ao texto. Não é a versão de computador encolhida.
+      </p>
+    </div>
+
+    <div class="device-linha">
+      <div class="fone">
+        <div class="fone-corpo">
+          <span class="botao-lat b1"></span><span class="botao-lat b2"></span>
+          <div class="ilha" aria-hidden="true"></div>
+          <div class="tela" data-vel="230">
+            <div class="rolo"><img src="{{TELA_MOBILE}}" alt="Site completo na versão para celular"></div>
+          </div>
+        </div>
+        <p class="legenda-device">Smartphone · <b>390 × 844</b></p>
+      </div>
+
+      <div class="tablet">
+        <div class="tablet-corpo">
+          <div class="tela" data-vel="200">
+            <div class="rolo"><img src="{{TELA_TABLET}}" alt="Site completo na versão para tablet"></div>
+          </div>
+        </div>
+        <p class="legenda-device">Tablet · <b>820 × 1120</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== TARJA 2 ============================== -->
+<div class="tarja tarja-esc" aria-hidden="true">
+  <div class="trilho trilho-inv">
+    <span>Atendimento 24 horas</span><span>OAB/CE 41.226</span><span>10 anos no TJCE</span><span>Sigilo absoluto</span><span>Atuação em todo o país</span><span>Resposta imediata</span>
+    <span>Atendimento 24 horas</span><span>OAB/CE 41.226</span><span>10 anos no TJCE</span><span>Sigilo absoluto</span><span>Atuação em todo o país</span><span>Resposta imediata</span>
+  </div>
+</div>
+
+<!-- ============================= IDENTIDADE ============================= -->
+<section class="sec sec-claro">
+  <div class="wrap">
+    <div class="cab">
+      <span class="eyebrow">Identidade visual</span>
+      <h2>Verde profundo, dourado envelhecido e areia.</h2>
+      <p class="lead">
+        A paleta foge do azul corporativo e do preto agressivo: comunica discrição, tradição e
+        acolhimento. O corte diagonal nos cantos é o elemento gráfico assinatura, repetido em chips,
+        botões, cards e molduras de imagem.
+      </p>
+    </div>
+
+    <div class="grade-2">
+      <div>
+        <div class="paleta">
+          <div class="cor" style="background:#1a201b;color:#e0cdb2"><b>Verde profundo</b><span>#1A201B</span></div>
+          <div class="cor" style="background:#353f36;color:#e0cdb2"><b>Verde</b><span>#353F36</span></div>
+          <div class="cor" style="background:#c9b292;color:#1a201b"><b>Dourado</b><span>#C9B292</span></div>
+          <div class="cor" style="background:#a8873f;color:#fcfbfb"><b>Dourado forte</b><span>#A8873F</span></div>
+          <div class="cor" style="background:#ded1be;color:#1a201b"><b>Areia clara</b><span>#DED1BE</span></div>
+          <div class="cor" style="background:#fcfbfb;color:#1a201b"><b>Branco</b><span>#FCFBFB</span></div>
+        </div>
+
+        <div class="tipo" style="margin-top:16px">
+          <div class="rotulo">Elemento assinatura · corte diagonal</div>
+          <div class="mostruario">
+            <span class="btn btn-ouro" style="cursor:default">Falar agora</span>
+            <span class="chip" style="color:#4c554d;border-color:rgba(26,32,27,.28)">Plantão 24h</span>
+            <span class="selo-card">Card</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="tipo">
+          <div class="rotulo">Títulos · Cormorant Garamond 600</div>
+          <p class="amostra-serif">As primeiras 24 horas valem mais que os próximos 24 meses.</p>
+          <p class="glifos">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
+        </div>
+        <div class="tipo">
+          <div class="rotulo">Texto e interface · Jost 300–600</div>
+          <p class="amostra-sans">
+            Cada etapa muda o que ainda pode ser feito pela liberdade. O Jost em caixa alta, com
+            entrelinha aberta e espacejamento largo, sustenta rótulos, botões e navegação sem
+            competir com a serifada dos títulos.
+          </p>
+          <p class="glifos" style="font-family:var(--sans);font-size:.74rem;letter-spacing:.2em">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ARQUITETURA ============================= -->
+<section class="sec sec-verde">
+  <div class="wrap">
+    <div class="cab">
+      <span class="eyebrow">Arquitetura da página</span>
+      <h2>A ordem das seções é o argumento.</h2>
+    </div>
+    <ol class="mapa">
+      <li><span class="num">01</span><h3>Abertura</h3><p>Fotografia em tela cheia, com o título se desenhando em traço lento sobre filetes dourados. Arte vertical dedicada ao celular.</p></li>
+      <li><span class="num">02</span><h3>Provas</h3><p>Faixa de credenciais: plantão 24h, mais de 10 anos de atuação, três câmaras criminais do TJCE, OAB/CE 41.226.</p></li>
+      <li><span class="num">03</span><h3>Urgência</h3><p>Linha do tempo das primeiras 24 horas — hora 0, 1 a 12h, até 24h, depois — ao lado do box de plantão com telefone e WhatsApp.</p></li>
+      <li><span class="num">04</span><h3>Atuação</h3><p>Dez cards: flagrante, custódia, liberdade, habeas corpus, júri, sustentação oral, recursos, execução penal, penal econômico e consultivo.</p></li>
+      <li><span class="num">05</span><h3>Diferenciais</h3><p>Seis motivos, do atendimento 24 horas ao acompanhamento humanizado e sigiloso em todas as fases do processo.</p></li>
+      <li><span class="num">06</span><h3>O advogado</h3><p>Trajetória: UFC, Damásio, PUCRS, Comissão do Tribunal do Júri da OAB/CE e assessoria a desembargadores nas três câmaras criminais.</p></li>
+      <li><span class="num">07</span><h3>Direito à saúde</h3><p>A segunda frente do escritório, apresentada a partir da própria história — o bloco que humaniza a marca.</p></li>
+      <li><span class="num">08</span><h3>Escritório</h3><p>Galeria do espaço na Aldeota, tratada como convite: um lugar de escuta, não uma sala de espera.</p></li>
+      <li><span class="num">09</span><h3>Dúvidas</h3><p>As perguntas que as famílias fazem primeiro, respondidas em linguagem sem jargão, abrindo uma a uma.</p></li>
+      <li><span class="num">10</span><h3>Chamada final</h3><p>Fecho de alta urgência, repetindo o canal direto e o plantão de 24 horas.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- =============================== TARJA 3 ============================== -->
+<div class="tarja" aria-hidden="true">
+  <div class="trilho">
+    <span>Piero Barbacovi Advogados</span><span>Advocacia criminal</span><span>Fortaleza · Aldeota</span><span>Plantão 24 horas</span><span>(85) 98423-2343</span>
+    <span>Piero Barbacovi Advogados</span><span>Advocacia criminal</span><span>Fortaleza · Aldeota</span><span>Plantão 24 horas</span><span>(85) 98423-2343</span>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Piero Barbacovi Advogados · OAB/CE 41.226</span>
+    <span>Demonstrativo do projeto digital</span>
+  </div>
+</footer>
+
+<script>
+/* ------------------------------------------------------------------ *
+ * 1. O carrossel de imagens e duplicado aqui, e nao no HTML, para que
+ *    cada foto seja embutida em base64 uma unica vez.
+ * ------------------------------------------------------------------ */
+(function(){
+  var trilho = document.querySelector('.trilho-img');
+  if (!trilho) return;
+  var originais = [].slice.call(trilho.children);
+  originais.forEach(function(fig){
+    var copia = fig.cloneNode(true);
+    copia.setAttribute('aria-hidden', 'true');
+    trilho.appendChild(copia);
+  });
+})();
+
+/* ------------------------------------------------------------------ *
+ * 2. Cada tela calcula o proprio percurso de rolagem e a duracao, para
+ *    que a velocidade seja parecida nos tres aparelhos.
+ * ------------------------------------------------------------------ */
+function medirTelas(){
+  var telas = document.querySelectorAll('.tela');
+  for (var i = 0; i < telas.length; i++){
+    var tela = telas[i];
+    var rolo = tela.querySelector('.rolo');
+    if (!rolo) continue;
+    var percurso = tela.clientHeight - rolo.offsetHeight;
+    if (percurso >= 0) continue;
+    var vel = parseFloat(tela.getAttribute('data-vel')) || 150;
+    tela.style.setProperty('--percurso', percurso + 'px');
+    tela.style.setProperty('--dur', Math.round(Math.abs(percurso) / vel) + 's');
+  }
+}
+window.addEventListener('resize', medirTelas);
+window.addEventListener('load', medirTelas);
+document.addEventListener('DOMContentLoaded', medirTelas);
+medirTelas();
+
+/* ------------------------------------------------------------------ *
+ * 3. A rolagem de cada aparelho so comeca quando a secao entra na tela.
+ * ------------------------------------------------------------------ */
+(function(){
+  var telas = document.querySelectorAll('.tela');
+  if (!telas.length) return;
+
+  function ligar(t){ medirTelas(); t.classList.add('ativa'); }
+
+  if (!('IntersectionObserver' in window)){
+    [].forEach.call(telas, ligar);
+  } else {
+    var obs = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){
+        if (!e.isIntersecting) return;
+        obs.unobserve(e.target);
+        setTimeout(function(){ ligar(e.target); }, 400);
+      });
+    }, { threshold: 0.25 });
+    [].forEach.call(telas, function(t){ obs.observe(t); });
+  }
+
+  /* no celular nao existe hover: o toque pausa e retoma */
+  [].forEach.call(telas, function(t){
+    t.addEventListener('click', function(){ t.classList.toggle('pausada'); });
+  });
+})();
+</script>
+</body>
+</html>
