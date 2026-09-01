@@ -286,14 +286,10 @@ nav a:hover::after{transform:scaleX(1)}
   content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(110deg,transparent 0 74%,rgba(224,205,178,.06) 74% 74.2%,transparent 74.2%);
 }
-.provas-grid{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;counter-reset:prova}
+.provas-grid{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0}
 .provas-grid>div{
-  counter-increment:prova;position:relative;display:grid;grid-template-areas:"termo" "valor";grid-template-columns:minmax(0,1fr);
+  position:relative;display:grid;grid-template-areas:"termo" "valor";grid-template-columns:minmax(0,1fr);
   min-height:178px;padding:28px 30px 30px;border-left:1px solid rgba(224,205,178,.17);overflow:hidden;
-}
-.provas-grid>div::before{
-  content:counter(prova,decimal-leading-zero);position:absolute;left:30px;top:27px;
-  color:rgba(224,205,178,.55);font-size:.6rem;font-weight:600;line-height:1;letter-spacing:.2em;
 }
 .provas-grid>div:first-child{border-left:0}
 .provas-grid>div::after{
@@ -320,9 +316,8 @@ nav a:hover::after{transform:scaleX(1)}
   .provas-grid>div:nth-child(odd){border-left:0}
   .provas-grid>div:nth-child(n+3){border-bottom:0}
   .provas-grid dt{font-size:.6rem;letter-spacing:.12em}
-  .provas-grid>div::before{left:20px;top:23px}
 }
-@media(max-width:370px){.provas-grid>div{padding-inline:15px}.provas-grid dd{font-size:2.35rem}.provas-grid>div::before{left:15px}}
+@media(max-width:370px){.provas-grid>div{padding-inline:15px}.provas-grid dd{font-size:2.35rem}}
 
 /* ---------- Seções ---------- */
 section{padding:clamp(68px,8vw,114px) 0}
