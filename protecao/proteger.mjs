@@ -20,6 +20,7 @@ import { randomBytes, createCipheriv, webcrypto } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import JsObfuscator from 'javascript-obfuscator';
+import CleanCSS from 'clean-css';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const RAIZ = resolve(__dirname, '..');
@@ -64,10 +65,49 @@ for (const rel of ordenados) {
 }
 
 /* --------------------------------------------------------------------------
-   3. Costurar CSS e JS para dentro do HTML (documento autossuficiente).
+   3. Ofuscar/minificar o próprio conteúdo antes de costurar.
+   Assim, mesmo depois que a página é decifrada e montada, o que aparece no
+   F12 (Sources / Elements) é código embaralhado e CSS sem estrutura legível.
    -------------------------------------------------------------------------- */
-html = html.replace(/<link[^>]+href=["']style\.css["'][^>]*>/i, `<style>\n${css}\n</style>`);
-html = html.replace(/<script[^>]+src=["']script\.js["'][^>]*><\/script>/i, `<script>\n${js}\n</script>`);
+
+/* CSS: remove comentários (base64 nunca contém '*', então o regex é seguro)
+   e compacta espaços com level 0 — que NÃO descarta nem mescla regras, para
+   preservar fallbacks intencionais (ex.: background png + webp). */
+css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+const cssMin = new CleanCSS({ level: 0 }).minify(css);
+if (cssMin.errors && cssMin.errors.length) { console.warn('  (aviso) CSS:', cssMin.errors); }
+css = cssMin.styles || css;
+
+/* JS do site: ofuscado (no F12 vira código ilegível, não o original). */
+js = JsObfuscator.obfuscate(js, {
+  compact: true,
+  controlFlowFlattening: true,
+  controlFlowFlatteningThreshold: 0.5,
+  deadCodeInjection: true,
+  deadCodeInjectionThreshold: 0.3,
+  identifierNamesGenerator: 'hexadecimal',
+  numbersToExpressions: true,
+  simplify: true,
+  splitStrings: true,
+  splitStringsChunkLength: 10,
+  stringArray: true,
+  stringArrayEncoding: ['base64'],
+  stringArrayThreshold: 1,
+  transformObjectKeys: true,
+  unicodeEscapeSequence: false,
+}).getObfuscatedCode();
+
+/* HTML: remove os comentários que revelam a estrutura das seções. */
+html = html.replace(/<!--[\s\S]*?-->/g, '');
+
+/* Evita que qualquer "</script" dentro do código quebre a tag inline. */
+const jsSeguro = js.replace(/<\/script/gi, '<\\/script');
+
+/* --------------------------------------------------------------------------
+   4. Costurar CSS e JS para dentro do HTML (documento autossuficiente).
+   -------------------------------------------------------------------------- */
+html = html.replace(/<link[^>]+href=["']style\.css["'][^>]*>/i, `<style>${css}</style>`);
+html = html.replace(/<script[^>]+src=["']script\.js["'][^>]*><\/script>/i, `<script>${jsSeguro}</script>`);
 /* O favicon já virou data: URI no passo anterior. */
 
 const documentoReal = html; // este é o site inteiro, em um único string
@@ -198,13 +238,22 @@ const carregador = `
     window.addEventListener("beforeprint", function () { mostrarCortina(true); });
     window.addEventListener("afterprint", function () { mostrarCortina(false); });
 
-    // --- Detecção de devtools (por diferença de tamanho da viewport) ---
-    setInterval(function () {
-      var aberto =
-        (window.outerWidth - window.innerWidth > 160) ||
-        (window.outerHeight - window.innerHeight > 160);
-      mostrarCortina(aberto);
-    }, 900);
+    // --- Detecção de devtools ---
+    // (a) diferença de tamanho da viewport (F12 acoplado)
+    // (b) armadilha de tempo com "debugger" (F12 aberto pausa e estoura o tempo)
+    function devtoolsAberto() {
+      var porTamanho =
+        (window.outerWidth - window.innerWidth > 140) ||
+        (window.outerHeight - window.innerHeight > 140);
+      var t0 = performance.now();
+      // eslint-disable-next-line no-debugger
+      (function () { debugger; })();
+      var porTempo = (performance.now() - t0) > 120;
+      return porTamanho || porTempo;
+    }
+    function checar() { mostrarCortina(devtoolsAberto()); }
+    checar();
+    setInterval(checar, 500);
   }
 
   if (document.readyState === "loading") {
