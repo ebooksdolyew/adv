@@ -149,18 +149,21 @@ const carregador = `
       "img{-webkit-user-drag:none;user-drag:none;pointer-events:none}" +
       "a img{pointer-events:none}" +
       "@media print{html,body{display:none!important}}" +
-      "#__wm{position:fixed;inset:0;z-index:2147483000;pointer-events:none;opacity:.10;" +
-        "background-repeat:repeat;transform:rotate(-30deg) scale(1.6);transform-origin:center}" +
+      "#__wm{position:fixed;inset:0;z-index:2147483000;pointer-events:none;opacity:.28;" +
+        "background-repeat:repeat;transform:rotate(-30deg) scale(1.35);transform-origin:center}" +
       "#__cover{position:fixed;inset:0;z-index:2147483600;background:#1a201b;color:#c9b292;" +
         "display:none;align-items:center;justify-content:center;text-align:center;font-family:sans-serif;font-size:20px}";
     (doc.head || doc.documentElement).appendChild(st);
 
     // --- Marca d'água diagonal repetida (SVG em data URI) ---
     var etiqueta = MARCA + "  \\u2022  " + DATA;
+    var enc = encodeURIComponent(etiqueta).replace(/'/g, "%27");
+    // dois textos (claro atrás, escuro na frente) -> legível em fundo claro e escuro
     var svg =
-      "<svg xmlns='http://www.w3.org/2000/svg' width='520' height='240'>" +
-      "<text x='0' y='120' fill='%23000' font-family='sans-serif' font-size='20'>" +
-      encodeURIComponent(etiqueta).replace(/'/g, "%27") + "</text></svg>";
+      "<svg xmlns='http://www.w3.org/2000/svg' width='430' height='190'>" +
+      "<text x='2' y='96' fill='%23ffffff' font-family='sans-serif' font-weight='700' font-size='26'>" + enc + "</text>" +
+      "<text x='0' y='94' fill='%23111111' font-family='sans-serif' font-weight='700' font-size='26'>" + enc + "</text>" +
+      "</svg>";
     var wm = doc.createElement("div");
     wm.id = "__wm";
     wm.style.backgroundImage = "url(\\"data:image/svg+xml;utf8," + svg + "\\")";
