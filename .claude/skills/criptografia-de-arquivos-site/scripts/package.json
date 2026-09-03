@@ -1,0 +1,11 @@
+{
+  "name": "criptografia-de-arquivos-site-scripts",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Scripts de blindagem/criptografia para a skill criptografia-de-arquivos-site",
+  "dependencies": {
+    "clean-css": "^5.3.3",
+    "javascript-obfuscator": "^4.1.1"
+  }
+}

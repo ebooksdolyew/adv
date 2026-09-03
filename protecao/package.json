@@ -1,0 +1,17 @@
+{
+  "name": "protecao",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "clean-css": "^5.3.3",
+    "javascript-obfuscator": "^4.2.2",
+    "playwright-core": "^1.62.1"
+  }
+}
