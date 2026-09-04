@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Piero Barbacovi Advogados | motor das animações
+   Nogueira Advocacia Criminal | motor das animações
    Só orquestra classes e variáveis CSS. Toda a aparência mora em style.css.
    ========================================================================== */
 (function () {
